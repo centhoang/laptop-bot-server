@@ -40,6 +40,9 @@ app.post("/webhook", async (req, res) => {
   if (wit.entities && wit.entities["greeting_phrase:greeting_phrase"]) {
     mes = "Chào bạn! Bạn muốn đặt hàng hay tìm hiểu thêm thông tin sản phẩm nào trong 5 sản phẩm mình đề xuất sau đây ạ: ASUS ZenBook Duo UX481, MSI GE66 Raider 10SGS-288, Dell XPS 13, ASUS F512JA-AS34 VivoBook, Acer Aspire 5 Slim";
   }
+  else if ((wit.entities && wit.entities["laptop_name:laptop_name"] && wit.entities["common_info_phrase:common_info_phrase"]) || (wit.entities && wit.entities["laptop_name:laptop_name"])) {
+    mes = "kiem tra dung chua da";
+  }
 
   // obtain the sender id from message object
   let body = {
