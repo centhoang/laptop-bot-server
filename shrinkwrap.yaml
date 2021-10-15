@@ -1,5 +1,7 @@
 dependencies:
+  body-parser: 1.1.0
   express: 4.17.1
+  node-fetch: 2.6.0
 packages:
   /accepts/1.3.7:
     dependencies:
@@ -14,6 +16,16 @@ packages:
     dev: false
     resolution:
       integrity: sha1-ml9pkFGx5wczKPKgCJaLZOopVdI=
+  /body-parser/1.1.0:
+    dependencies:
+      qs: 0.6.6
+      raw-body: 1.1.4
+      type-is: 1.1.0
+    dev: false
+    engines:
+      node: '>= 0.8'
+    resolution:
+      integrity: sha1-5qPEYGOzKdqw63oxvcHco7MYWrk=
   /body-parser/1.19.0:
     dependencies:
       bytes: 3.1.0
@@ -31,6 +43,10 @@ packages:
       node: '>= 0.8'
     resolution:
       integrity: sha512-dhEPs72UPbDnAQJ9ZKMNTP6ptJaionhP5cBb541nXPlW60Jepo9RV/a4fX4XWW9CuFNK22krhrj1+rgzifNCsw==
+  /bytes/0.3.0:
+    dev: false
+    resolution:
+      integrity: sha1-eOLg4ox/nHuYjqiu4NtNX6mUGTU=
   /bytes/3.1.0:
     dev: false
     engines:
@@ -236,6 +252,10 @@ packages:
       node: '>= 0.6'
     resolution:
       integrity: sha512-5KhStqB5xpTAeGqKBAMgwaYMnQik7teQN4IAzC7npDv6kzeU6prfkR67bc87J1kWMPGkoaZSq1npmexMgkmEVg==
+  /mime/1.2.11:
+    dev: false
+    resolution:
+      integrity: sha1-WCA+7Ybjpe8XrtK32evUfwpg3RA=
   /mime/1.6.0:
     dev: false
     engines:
@@ -257,6 +277,12 @@ packages:
       node: '>= 0.6'
     resolution:
       integrity: sha512-hZXc7K2e+PgeI1eDBe/10Ard4ekbfrrqG8Ep+8Jmf4JID2bNg7NvCPOZN+kfF574pFQI7mum2AUqDidoKqcTOw==
+  /node-fetch/2.6.0:
+    dev: false
+    engines:
+      node: 4.x || >=6.0.0
+    resolution:
+      integrity: sha512-8dG4H5ujfvFiqDmVu9fQ5bOHUC15JMjMY/Zumv26oOvvVJjM67KF8koCWIabKQ1GJIa9r2mMZscBq/TbdOcmNA==
   /on-finished/2.3.0:
     dependencies:
       ee-first: 1.1.1
@@ -284,6 +310,10 @@ packages:
       node: '>= 0.10'
     resolution:
       integrity: sha512-t/7RxHXPH6cJtP0pRG6smSr9QJidhB+3kXu0KgXnbGYMgzEnUxRQ4/LDdfOwZEMyIh3/xHb8PX3t+lfL9z+YVQ==
+  /qs/0.6.6:
+    dev: false
+    resolution:
+      integrity: sha1-bgFQmP9RlouKPIGQAdXyyJvEsQc=
   /qs/6.7.0:
     dev: false
     engines:
@@ -296,6 +326,14 @@ packages:
       node: '>= 0.6'
     resolution:
       integrity: sha512-Hrgsx+orqoygnmhFbKaHE6c296J+HTAQXoxEF6gNupROmmGJRoyzfG3ccAveqCBrwr/2yxQ5BVd/GTl5agOwSg==
+  /raw-body/1.1.4:
+    dependencies:
+      bytes: 0.3.0
+    dev: false
+    engines:
+      node: '>= 0.8.0'
+    resolution:
+      integrity: sha1-8LViQ4jQMfY9oH+HDIbLnMrctn0=
   /raw-body/2.4.0:
     dependencies:
       bytes: 3.1.0
@@ -362,6 +400,12 @@ packages:
       node: '>=0.6'
     resolution:
       integrity: sha512-yaOH/Pk/VEhBWWTlhI+qXxDFXlejDGcQipMlyxda9nthulaxLZUNcUqFxokp0vcYnvteJln5FNQDRrxj3YcbVw==
+  /type-is/1.1.0:
+    dependencies:
+      mime: 1.2.11
+    dev: false
+    resolution:
+      integrity: sha1-0CReyLJnZmjVndDPMlUGBnalfbY=
   /type-is/1.6.18:
     dependencies:
       media-typer: 0.3.0
@@ -393,4 +437,6 @@ registry: 'https://registry.npmjs.org/'
 shrinkwrapMinorVersion: 9
 shrinkwrapVersion: 3
 specifiers:
+  body-parser: 1.1.0
   express: ^4.17.1
+  node-fetch: 2.6.0
