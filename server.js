@@ -41,15 +41,20 @@ app.post("/webhook", async (req, res) => {
     mes = "Chào bạn! Bạn muốn đặt hàng hay tìm hiểu thêm thông tin sản phẩm nào trong 5 sản phẩm mình đề xuất sau đây ạ: Asus ZenBook Duo UX481, MSI GE66 Raider 11UG, Dell XPS 13 9310, Asus VivoBook A515EP, Acer Aspire 5 A514-54-39KU";
   }
   else if ((wit.entities && wit.entities["laptop_name:laptop_name"] && wit.entities["common_info_phrase:common_info_phrase"]) || (wit.entities && wit.entities["laptop_name:laptop_name"])) {
-    if (wit.entities["laptop_name:laptop_name"][0].value == "Asus ZenBook Duo UX481")
-      {
+    if (wit.entities["laptop_name:laptop_name"][0].value == "Asus ZenBook Duo UX481") {
         mes = `Asus ZenBook Duo UX481
-giá: 30.990.000 đ
-chất lượng: đánh giá chung của khách hàng là 4 sao
-CPU: i5, 10210U, 1.6GHz
-RAM: 8 GB, DDR3L (On board), 2133 MHz
-Ổ cứng: SSD 512 GB NVMe PCIe`
-      }
+- Giá: 30.990.000 đ
+- Chất lượng: đánh giá chung của khách hàng là 4 sao
+- CPU: i5, 10210U, 1.6GHz
+- RAM: 8 GB, DDR3L (On board), 2133 MHz
+- Ổ cứng: SSD 512 GB NVMe PCIe`;
+    }
+    else {
+      mes = "chưa phải laptop cần hỏi :)";
+    }
+  }
+  else {
+    mes = "Vui lòng bạn ghi chính xác tên sản phẩm! Xin cảm ơn"
   }
 
   // obtain the sender id from message object
