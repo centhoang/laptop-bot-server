@@ -33,25 +33,12 @@ app.post("/webhook", async (req, res) => {
     }
   });
   let wit = await answer.json();
-  
+
   //tries to ensure that property to extract the value from the wit.ai response exists
   let mes;
-  
-  if (
-    wit.entities &&
-    wit.entities["wit$wikipedia_search_query:wikipedia_search_query"]
-  ) {
-    //building up the URL used to query Wikipedia
-    let link = `https://en.wikipedia.org/api/rest_v1/page/summary/${wit.entities["wit$wikipedia_search_query:wikipedia_search_query"][0].value}`;
 
-    let wiki = await fetch(encodeURI(link));
-    let data = await wiki.json();
-
-    if (data.title == "Not found.") {
-      mes = "Not found u idiot!";
-    } else {
-      mes = data.extract;
-    }
+  if (wit.entities && wit.entities["greeting_phrase:greeting_phrase"]) {
+    mes = "Chào bạn! Bạn muốn mua ";
   }
 
   // obtain the sender id from message object
@@ -63,7 +50,6 @@ app.post("/webhook", async (req, res) => {
       text: mes
     }
   };
-
 
   /*sends a response containing information from Wikipedia
 back to the user on Messenger */
@@ -82,7 +68,7 @@ back to the user on Messenger */
   } catch (e) {
     console.log("error", e);
   }
-  
+
   res.send("");
 });
 
