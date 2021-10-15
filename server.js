@@ -38,7 +38,7 @@ app.post("/webhook", async (req, res) => {
   let mes;
 
   if (wit.entities && wit.entities["greeting_phrase:greeting_phrase"]) {
-    mes = "Chào bạn! Bạn muốn mua ";
+    mes = "Chào bạn! Bạn muốn đặt hàng hay tìm hiểu thêm thông tin sản phẩm nào trong 5 sản phẩm mình đề xuất sau đây ạ: ASUS ZenBook Duo UX481, MSI GE66 Raider 10SGS-288, Dell XPS 13, ASUS F512JA-AS34 VivoBook, Acer Aspire 5 Slim";
   }
 
   // obtain the sender id from message object
@@ -51,8 +51,7 @@ app.post("/webhook", async (req, res) => {
     }
   };
 
-  /*sends a response containing information from Wikipedia
-back to the user on Messenger */
+  /*sends a response back to the user on Messenger */
   try {
     let ans = await fetch(
       "https://graph.facebook.com/v8.0/me/messages?access_token=" +
