@@ -94,7 +94,7 @@ app.post("/webhook", async (req, res) => {
   ) {
     // search for the laptop user needs
     for (let laptop in laptop_dict) {
-      console.log (laptop.name);
+      console.log (laptop);
       if (laptop.name == wit.entities["laptop_name:laptop_name"][0].value) {
         laptop_instance = laptop;
         break;
