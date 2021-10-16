@@ -56,21 +56,38 @@ app.post("/webhook", async (req, res) => {
     },
     Dell_XPS_13_9310: {
       name: "Dell XPS 13 9310",
-      price: "59.990.000 đ",
+      price: "59.490.000 đ",
       quality: "đánh giá chung của khách hàng là 5 sao",
-      cpu: "i7, 11800H, 2.30 GHz",
-      ram: "16 GB, DDR4 2 khe (1 khe 8GB + 1 khe 8GB), 3200 MHz",
-      hard_drive: "Hỗ trợ thêm 1 khe cắm SSD M.2 PCIe mở rộng (nâng cấp tối đa 2TB), 2 TB SSD NVMe PCIe"
+      cpu: "i7, 1165G7, 2.8GHz",
+      ram: "16 GB, LPDDR4X (On board), 4267 MHz",
+      hard_drive: "512 GB SSD NVMe PCIe (Có thể tháo ra, lắp thanh khác tối đa 1TB)"
     },
+    Asus_VivoBook_A515EP: {
+      name: "Asus VivoBook A515EP",
+      price: "20.790.000 đ",
+      quality: "đánh giá chung của khách hàng là 4 sao",
+      cpu: "i5, 1135G7, 2.4GHz",
+      ram: "8 GB, DDR4 2 khe (1 khe 8GB onboard + 1 khe trống), 3200 MHz",
+      hard_drive: "SSD 512 GB NVMe PCIe, hỗ trợ khe cắm HDD SATA"
+    },
+    Acer_Aspire_5_A514_54_39KU: {
+      name: "Acer Aspire 5 A514-54-39KU",
+      price: "13.490.000 đ",
+      quality: "đánh giá chung của khách hàng là 5 sao",
+      cpu: "i3 , 1115G4, 3.0 GHz - 4.1 GHz",
+      ram: "On-board 4GB",
+      hard_drive: "SSD NVMe PCle 256GB"
+    }
   }
 
+  
   if (wit.entities && wit.entities["greeting_phrase:greeting_phrase"]) {
     mes = "Chào bạn! Bạn muốn đặt hàng hay tìm hiểu thêm thông tin sản phẩm nào trong 5 sản phẩm mình đề xuất sau đây ạ: Asus ZenBook Duo UX481, MSI GE66 Raider 11UG, Dell XPS 13 9310, Asus VivoBook A515EP, Acer Aspire 5 A514-54-39KU";
   }
   else if ((wit.entities && wit.entities["laptop_name:laptop_name"] && wit.entities["common_info_phrase:common_info_phrase"]) || (wit.entities && wit.entities["laptop_name:laptop_name"])) {
     if (wit.entities["laptop_name:laptop_name"][0].value == "Asus ZenBook Duo UX481") {
         mes = `Asus ZenBook Duo UX481
-- Giá: 30.990.000 đ
+- Giá: ${laptop_dict.Asus_ZenBook_Duo_UX481.price}
 - Chất lượng: đánh giá chung của khách hàng là 4 sao
 - CPU: i5, 10210U, 1.6GHz
 - RAM: 8 GB, DDR3L (On board), 2133 MHz
