@@ -36,21 +36,32 @@ app.post("/webhook", async (req, res) => {
 
   //tries to ensure that property to extract the value from the wit.ai response exists
   let mes;
-  let laptop_info = {
-    name,
-    price: "price",
-    quality: "quality",
-    cpu: "cpu",
-    ram: "ram",
-    hard_drive: "hard drive"
-  }
-  
   
   let laptop_dict = {
     Asus_ZenBook_Duo_UX481: {
       name: "Asus ZenBook Duo UX481",
-      
-    }
+      price: "30.990.000 đ",
+      quality: "đánh giá chung của khách hàng là 4 sao",
+      cpu: "i5, 10210U, 1.6GHz",
+      ram: "8 GB, DDR3L (On board), 2133 MHz",
+      hard_drive: "SSD 512 GB NVMe PCIe"
+    },
+    MSI_GE66_Raider_11UG: {
+      name: "MSI GE66 Raider 11UG",
+      price: "59.990.000 đ",
+      quality: "đánh giá chung của khách hàng là 5 sao",
+      cpu: "i7, 11800H, 2.30 GHz",
+      ram: "16 GB, DDR4 2 khe (1 khe 8GB + 1 khe 8GB), 3200 MHz",
+      hard_drive: "Hỗ trợ thêm 1 khe cắm SSD M.2 PCIe mở rộng (nâng cấp tối đa 2TB), 2 TB SSD NVMe PCIe"
+    },
+    Dell_XPS_13_9310: {
+      name: "Dell XPS 13 9310",
+      price: "59.990.000 đ",
+      quality: "đánh giá chung của khách hàng là 5 sao",
+      cpu: "i7, 11800H, 2.30 GHz",
+      ram: "16 GB, DDR4 2 khe (1 khe 8GB + 1 khe 8GB), 3200 MHz",
+      hard_drive: "Hỗ trợ thêm 1 khe cắm SSD M.2 PCIe mở rộng (nâng cấp tối đa 2TB), 2 TB SSD NVMe PCIe"
+    },
   }
 
   if (wit.entities && wit.entities["greeting_phrase:greeting_phrase"]) {
