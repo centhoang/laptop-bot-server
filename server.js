@@ -36,11 +36,22 @@ app.post("/webhook", async (req, res) => {
 
   //tries to ensure that property to extract the value from the wit.ai response exists
   let mes;
-  let data = {
-    laptop: {
-      Asus_ZenBook_Duo_UX481 :
+  let laptop_info = {
+    name,
+    price: "price",
+    quality: "quality",
+    cpu: "cpu",
+    ram: "ram",
+    hard_drive: "hard drive"
+  }
+  
+  
+  let laptop_dict = {
+    Asus_ZenBook_Duo_UX481: {
+      name: "Asus ZenBook Duo UX481",
+      
     }
-  };
+  }
 
   if (wit.entities && wit.entities["greeting_phrase:greeting_phrase"]) {
     mes = "Chào bạn! Bạn muốn đặt hàng hay tìm hiểu thêm thông tin sản phẩm nào trong 5 sản phẩm mình đề xuất sau đây ạ: Asus ZenBook Duo UX481, MSI GE66 Raider 11UG, Dell XPS 13 9310, Asus VivoBook A515EP, Acer Aspire 5 A514-54-39KU";
