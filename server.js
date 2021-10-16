@@ -38,8 +38,8 @@ app.post("/webhook", async (req, res) => {
   let mes;
   let laptop_instance;
 
-  let laptop_dict = {
-    Asus_ZenBook_Duo_UX481: {
+  let laptop_dict = [
+    {
       name: "Asus ZenBook Duo UX481",
       price: "30.990.000 đ",
       quality: "đánh giá chung của khách hàng là 4 sao",
@@ -47,7 +47,7 @@ app.post("/webhook", async (req, res) => {
       ram: "8 GB, DDR3L (On board), 2133 MHz",
       hard_drive: "SSD 512 GB NVMe PCIe"
     },
-    MSI_GE66_Raider_11UG: {
+    {
       name: "MSI GE66 Raider 11UG",
       price: "59.990.000 đ",
       quality: "đánh giá chung của khách hàng là 5 sao",
@@ -56,7 +56,7 @@ app.post("/webhook", async (req, res) => {
       hard_drive:
         "Hỗ trợ thêm 1 khe cắm SSD M.2 PCIe mở rộng (nâng cấp tối đa 2TB), 2 TB SSD NVMe PCIe"
     },
-    Dell_XPS_13_9310: {
+    {
       name: "Dell XPS 13 9310",
       price: "59.490.000 đ",
       quality: "đánh giá chung của khách hàng là 5 sao",
@@ -65,7 +65,7 @@ app.post("/webhook", async (req, res) => {
       hard_drive:
         "512 GB SSD NVMe PCIe (Có thể tháo ra, lắp thanh khác tối đa 1TB)"
     },
-    Asus_VivoBook_A515EP: {
+    {
       name: "Asus VivoBook A515EP",
       price: "20.790.000 đ",
       quality: "đánh giá chung của khách hàng là 4 sao",
@@ -73,7 +73,7 @@ app.post("/webhook", async (req, res) => {
       ram: "8 GB, DDR4 2 khe (1 khe 8GB onboard + 1 khe trống), 3200 MHz",
       hard_drive: "SSD 512 GB NVMe PCIe, hỗ trợ khe cắm HDD SATA"
     },
-    Acer_Aspire_5_A514_54_39KU: {
+    {
       name: "Acer Aspire 5 A514-54-39KU",
       price: "13.490.000 đ",
       quality: "đánh giá chung của khách hàng là 5 sao",
@@ -81,7 +81,7 @@ app.post("/webhook", async (req, res) => {
       ram: "On-board 4GB",
       hard_drive: "SSD NVMe PCle 256GB"
     }
-  };
+  ];
 
   if (wit.entities && wit.entities["greeting_phrase:greeting_phrase"]) {
     mes =
@@ -93,21 +93,20 @@ app.post("/webhook", async (req, res) => {
     (wit.entities && wit.entities["laptop_name:laptop_name"])
   ) {
     // search for the laptop user needs
-    let laptop = laptop_dict.Asus_VivoBook_A515EP;
-    console.log (laptop);
-    for (let laptop in laptop_dict) {
-      //console.log (laptop);
-      if (laptop.name == wit.entities["laptop_name:laptop_name"][0].value) {
-        laptop_instance = laptop;
+    for (let x = 0; x < laptop_dict.length; x++) {
+      if (
+        laptop_dict[x].name == wit.entities["laptop_name:laptop_name"][0].value
+      ) {
+        laptop_instance = laptop_dict[x];
         break;
       }
     }
 
-    //reply the laptop's common info
+    // reply the laptop's common info
     if (laptop_instance == null) {
       mes = "Vui lòng bạn ghi chính xác tên sản phẩm! Xin cảm ơn";
     } else {
-      mes = `Asus ZenBook Duo UX481
+      mes = `${laptop_instance.name}
 - Giá: ${laptop_instance.price}
 - Chất lượng: ${laptop_instance.quality}
 - CPU: ${laptop_instance.cpu}
