@@ -83,39 +83,74 @@ app.post("/webhook", async (req, res) => {
     }
   ];
 
-  if (wit.entities && wit.entities["greeting_phrase:greeting_phrase"]) {
-    mes =
-      "Chào bạn! Bạn muốn đặt hàng hay tìm hiểu thêm thông tin sản phẩm nào trong 5 sản phẩm mình đề xuất sau đây ạ: Asus ZenBook Duo UX481, MSI GE66 Raider 11UG, Dell XPS 13 9310, Asus VivoBook A515EP, Acer Aspire 5 A514-54-39KU";
-  } else if (
-    (wit.entities &&
-      wit.entities["laptop_name:laptop_name"] &&
-      wit.entities["common_info_phrase:common_info_phrase"]) ||
-    (wit.entities && wit.entities["laptop_name:laptop_name"])
-  ) {
-    // search for the laptop user needs
-    for (let x = 0; x < laptop_dict.length; x++) {
-      if (
-        laptop_dict[x].name == wit.entities["laptop_name:laptop_name"][0].value
-      ) {
-        laptop_instance = laptop_dict[x];
-        break;
-      }
-    }
+  if (wit.entities && wit.entities["laptop_name:laptop_name"]) 
+    {
+        // search for the laptop user needs
+        for (let x = 0; x < laptop_dict.length; x++) 
+        {
+            if (laptop_dict[x].name == wit.entities["laptop_name:laptop_name"][0].value) 
+            {
+              laptop_instance = laptop_dict[x];
+              break;
+            }
+        }
+        mes = `${laptop_instance.name}`;
 
-    // reply the laptop's common info
-    if (laptop_instance == null) {
-      mes = "Vui lòng bạn ghi chính xác tên sản phẩm! Xin cảm ơn";
-    } else {
-      mes = `${laptop_instance.name}
+        // search for laptop's info base on user's request
+        let flag = false;
+        if (wit.entities["price_phrase:price_phrase"])
+        {
+            flag = true;
+            mes = mes.concat(`
+- Giá: ${laptop_instance.price}`);
+        }
+
+        if (wit.entities["quality_phrase:quality_phrase"])
+        {
+            flag = true;
+            mes = mes.concat(`
+- Chất lượng: ${laptop_instance.quality}`);
+        }
+
+        if (wit.entities["cpu_phrase:cpu_phrase"])
+        {
+            flag = true;
+            mes = mes.concat(`
+- CPU: ${laptop_instance.cpu}`);
+        }
+
+        if (wit.entities["ram_phrase:ram_phrase"])
+        {
+            flag = true;
+            mes = mes.concat(`
+- RAM: ${laptop_instance.ram}`);
+        }
+
+        if (wit.entities["hard_drive_phrase:hard_drive_phrase"])
+        {
+            flag = true;
+            mes = mes.concat(`
+- Ổ cứng: ${laptop_instance.hard_drive}`);
+        }
+
+        if (flag == false)
+        {
+            mes = `${laptop_instance.name}
 - Giá: ${laptop_instance.price}
 - Chất lượng: ${laptop_instance.quality}
 - CPU: ${laptop_instance.cpu}
 - RAM: ${laptop_instance.ram}
 - Ổ cứng: ${laptop_instance.hard_drive}`;
+        }
+    }  
+    else if (wit.entities && wit.entities["greeting_phrase:greeting_phrase"]) 
+    {
+        mes = "Chào bạn! Bạn muốn đặt hàng hay tìm hiểu thêm thông tin sản phẩm nào trong 5 sản phẩm mình đề xuất sau đây ạ: Asus ZenBook Duo UX481, MSI GE66 Raider 11UG, Dell XPS 13 9310, Asus VivoBook A515EP, Acer Aspire 5 A514-54-39KU";
     }
-  } else {
-    mes = "Mình chưa hiểu lắm! Vui lòng bạn nhắn rõ ràng hơn";
-  }
+    else 
+    {
+        mes = "Mình chưa hiểu lắm! Vui lòng bạn nhắn rõ ràng hơn";
+    }
 
   // obtain the sender id from message object
   let body = {
