@@ -93,8 +93,10 @@ app.post("/webhook", async (req, res) => {
     (wit.entities && wit.entities["laptop_name:laptop_name"])
   ) {
     // search for the laptop user needs
+    let laptop = laptop_dict.Asus_VivoBook_A515EP;
+    console.log (laptop);
     for (let laptop in laptop_dict) {
-      console.log (laptop);
+      //console.log (laptop);
       if (laptop.name == wit.entities["laptop_name:laptop_name"][0].value) {
         laptop_instance = laptop;
         break;
