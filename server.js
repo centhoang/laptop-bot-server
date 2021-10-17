@@ -171,7 +171,9 @@ app.post("/webhook", async (req, res) => {
     }  
     else if (wit.entities && wit.entities["greeting_phrase:greeting_phrase"]) 
     {
-        mes = "Chào bạn! Bạn muốn đặt hàng hay tìm hiểu thêm thông tin sản phẩm nào trong 5 sản phẩm mình đề xuất sau đây ạ: Asus ZenBook Duo UX481, MSI GE66 Raider 11UG, Dell XPS 13 9310, Asus VivoBook A515EP, Acer Aspire 5 A514-54-39KU";
+        mes = `Chào bạn! Bạn muốn đặt hàng hay tìm hiểu thêm thông tin sản phẩm nào trong 5 sản phẩm mình đề xuất sau đây ạ: Asus ZenBook Duo UX481, MSI GE66 Raider 11UG, Dell XPS 13 9310, Asus VivoBook A515EP, Acer Aspire 5 A514-54-39KU
+
+Bạn có thể hỏi các thông tin sau đây của sản phẩm: giá, chất lượng (đánh giá chung của khách hàng là bao nhiêu sao), tốc độ CPU, dung lượng RAM và dung lượng ổ cứng`;
     }
     else 
     {
