@@ -94,6 +94,14 @@ app.post("/webhook", async (req, res) => {
               break;
             }
         }
+      
+        if (!laptop_instance)
+        {
+          mes = `Vui lòng ghi chính xác tên sản phẩm bạn muốn tìm kiếm trong 5 sản phẩm mình đề xuất: Asus ZenBook Duo UX481, MSI GE66 Raider 11UG, Dell XPS 13 9310, Asus VivoBook A515EP, Acer Aspire 5 A514-54-39KU.
+Xin cảm ơn`;
+          
+        }
+      
         mes = `${laptop_instance.name}`;
         
         if (wit.entities["order_phrase:order_phrase"])
