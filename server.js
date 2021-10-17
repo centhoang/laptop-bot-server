@@ -100,37 +100,48 @@ app.post("/webhook", async (req, res) => {
         let flag = false;
         if (wit.entities["price_phrase:price_phrase"])
         {
-            flag = true;
-            mes = mes.concat(`
+          flag = true;
+          mes = mes.concat(`
 - Giá: ${laptop_instance.price}`);
         }
 
         if (wit.entities["quality_phrase:quality_phrase"])
         {
-            flag = true;
-            mes = mes.concat(`
+          flag = true;
+          mes = mes.concat(`
 - Chất lượng: ${laptop_instance.quality}`);
         }
 
-        if (wit.entities["cpu_phrase:cpu_phrase"])
+        if (wit.entities["specification_phrase:specification_phrase"])
         {
-            flag = true;
-            mes = mes.concat(`
-- CPU: ${laptop_instance.cpu}`);
-        }
-
-        if (wit.entities["ram_phrase:ram_phrase"])
-        {
-            flag = true;
-            mes = mes.concat(`
-- RAM: ${laptop_instance.ram}`);
-        }
-
-        if (wit.entities["hard_drive_phrase:hard_drive_phrase"])
-        {
-            flag = true;
-            mes = mes.concat(`
+          flag = true;
+          mes = mes.concat(`
+- CPU: ${laptop_instance.cpu}
+- RAM: ${laptop_instance.ram}
 - Ổ cứng: ${laptop_instance.hard_drive}`);
+        }
+        else
+        {
+            if (wit.entities["cpu_phrase:cpu_phrase"])
+          {
+            flag = true;
+            mes = mes.concat(`
+  - CPU: ${laptop_instance.cpu}`);
+          }
+
+          if (wit.entities["ram_phrase:ram_phrase"])
+          {
+            flag = true;
+            mes = mes.concat(`
+  - RAM: ${laptop_instance.ram}`);
+          }
+
+          if (wit.entities["hard_drive_phrase:hard_drive_phrase"])
+          {
+            flag = true;
+            mes = mes.concat(`
+  - Ổ cứng: ${laptop_instance.hard_drive}`);
+          }
         }
 
         if (flag == false)
